@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  node-service:
+    build:
+      context: .
+    environment:
+      NODE_ENV: production
+    depends_on:
+      - gateway
+
+  gateway:
+    build:
+      context: ./nginx
+    ports:
+      - 80:80
+
+networks:
+  my-network:
+    driver: bridge
