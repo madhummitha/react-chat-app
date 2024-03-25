@@ -8,12 +8,19 @@ services:
       NODE_ENV: production
     depends_on:
       - gateway
+    networks:
+      - my-network
+    container_name: node-service
 
   gateway:
+    restart: always
     build:
       context: ./nginx
     ports:
       - 80:80
+    networks:
+      - my-network
+    container_name: gateway
 
 networks:
   my-network:
